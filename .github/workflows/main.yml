@@ -16,12 +16,10 @@ jobs:
         run: npm install
       - name: Run the test
         run: npm test
-      - name: Change directory to scripts
-        run: cd scripts
       - name: Run build script
-        run: bash build.sh
+        run: bash ./scripts/build.sh
       - name: Run start script
-        run: bash start.sh
+        run: bash ./scripts/start.sh
       - name: Wait for container to start
         run: sleep 10
       - name: Test API endpoint with curl
