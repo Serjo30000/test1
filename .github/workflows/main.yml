@@ -1,0 +1,26 @@
+name: Test
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Nodejs
+        uses: actions/checkout@v1
+      - name: Install depencies
+        run: npm install
+      - name: Run the test
+        run: npm test
+      - name: Run build script
+        run: bash ./scripts/build.sh
+      - name: Run start script
+        run: bash ./scripts/start.sh
+      - name: Wait for container to start
+        run: sleep 10
+      - name: Test API endpoint with curl
+        run: curl -X GET http://localhost:3001/api/hello
